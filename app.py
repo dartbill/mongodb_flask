@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
-from flask_pymongo import PyMongo
+from flask_pymongo import pymongo
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://billiedartnell:Orangelemon19@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority"
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = "mongodb+srv://billiedartnell:Orangelemon19@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority"
+# mongo = PyMongo(app)
 
 
 CONNECTION_STRING = "mongodb+srv://test:test@flask-mongodb-atlas-1g8po.mongodb.net/test?retryWrites=true&w=majority"
