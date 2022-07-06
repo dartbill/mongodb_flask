@@ -8,6 +8,7 @@ flask = "*"
 gunicorn = "*"
 flask-cors = "*"
 flask-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
