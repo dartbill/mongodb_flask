@@ -8,9 +8,9 @@ app = Flask(__name__)
 client = pymongo.MongoClient(connection_url)
   
 # Database
-Database = client.get_database('sample_restaurants')
+Database = client.get_database('example')
 # Table
-SampleTable = Database.sample_restaurants
+SampleTable = Database.sample
 
 
 @app.route('/')
