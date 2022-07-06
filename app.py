@@ -17,5 +17,17 @@ SampleTable = Database.sample_restaurants
 def hello():
     return jsonify({"hello": "world"}),200
 
+
+@app.route('/db')
+def get_db():
+    query = SampleTable.find()
+    output = {}
+    i = 0
+    for x in query:
+        output[i] = x
+        output[i].pop('_id')
+        i += 1
+    return jsonify(output)
+
 if __name__ == '__main__':
     app.run(debug=True)
