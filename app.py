@@ -7,5 +7,5 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home_page():
-    online_users = mongo.db.sample_restaurants.find({"borough": 'Brooklyn'})
+    online_users = mongo.db.sample_restaurants.restaurants.find({"borough": 'Brooklyn'})
     return online_users
