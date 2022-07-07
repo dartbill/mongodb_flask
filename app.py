@@ -3,7 +3,7 @@ from flask_cors import CORS
 import pymongo
 
 # Replace your URL here. Don't forget to replace the password.
-connection_url = 'mongodb+srv://billiedartnell:<password>@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
+connection_url = 'mongodb+srv://billiedartnell:Orangelemon19@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
 app = Flask(__name__)
 client = pymongo.MongoClient(connection_url)
 
