@@ -1,3 +1,4 @@
+from random import sample
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pymongo
@@ -33,6 +34,8 @@ def get_db():
 
 @app.route('/db', methods=["POST"])
 def post_db():
+    new_user = request.get_json()
+    SampleTable.insert_one(new_user)
     # query = SampleTable.find()
     # output = {}
     # i = 0
@@ -40,7 +43,7 @@ def post_db():
     #     output[i] = x
     #     output[i].pop('_id')
     #     i += 1
-    return jsonify('output')
+    return jsonify(new_user)
 
 
 if __name__ == '__main__':
