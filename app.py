@@ -4,7 +4,7 @@ from flask_cors import CORS
 import pymongo
 
 # Replace your URL here. Don't forget to replace the password.
-connection_url = 'mongodb+srv://billiedartnell:Orangelemon19@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
+connection_url = 'mongodb+srv://billiedartnell:@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
 app = Flask(__name__)
 client = pymongo.MongoClient(connection_url)
 
@@ -36,14 +36,14 @@ def get_db():
 def post_db():
     new_user = request.get_json()
     SampleTable.insert_one(new_user)
-    # query = SampleTable.find()
-    # output = {}
-    # i = 0
-    # for x in query:
-    #     output[i] = x
-    #     output[i].pop('_id')
-    #     i += 1
     return jsonify('a new user has been added')
+
+
+@app.route('/db:<id>', methods=["PATCH"])
+def update_db():
+    update_user = SampleTable.find_one({})
+    mycollection.update_one({'_id': mongo_id}, {"$set": post}, upsert=False)
+    return jsonify('a new user has been updated')
 
 
 if __name__ == '__main__':
