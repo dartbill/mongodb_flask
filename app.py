@@ -18,20 +18,28 @@ def hello():
     return jsonify({"hello": "world"}), 200
 
 
-@app.route('/db', methods=["GET", "POST"])
+@app.route('/db', methods=["GET"])
 def get_db():
-    if request.method == 'GET':
+    query = SampleTable.find()
+    output = {}
+    i = 0
+    for x in query:
+        output[i] = x
+        output[i].pop('_id')
+        i += 1
+    return jsonify(output)
 
-        query = SampleTable.find()
-        output = {}
-        i = 0
-        for x in query:
-            output[i] = x
-            output[i].pop('_id')
-            i += 1
-        return jsonify(output)
-    elif request.method == 'POST':
-        return jsonify('message: hello')
+
+@app.route('/db', methods=["POST"])
+def post_db():
+    # query = SampleTable.find()
+    # output = {}
+    # i = 0
+    # for x in query:
+    #     output[i] = x
+    #     output[i].pop('_id')
+    #     i += 1
+    return jsonify('output')
 
 
 if __name__ == '__main__':
