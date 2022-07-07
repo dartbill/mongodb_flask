@@ -43,7 +43,7 @@ def post_db():
     #     output[i] = x
     #     output[i].pop('_id')
     #     i += 1
-    return jsonify(new_user)
+    return jsonify('a new user has been added')
 
 
 if __name__ == '__main__':
