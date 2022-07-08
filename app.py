@@ -6,7 +6,7 @@ from bson.json_util import dumps
 import pymongo
 
 # Replace your URL here. Don't forget to replace the password.
-connection_url = 'mongodb+srv://billiedartnell:Orangelemon19@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
+connection_url = 'mongodb+srv://billiedartnell:@cluster0.0z2m7lp.mongodb.net/?retryWrites=true&w=majority'
 app = Flask(__name__)
 client = pymongo.MongoClient(connection_url)
 
@@ -51,8 +51,10 @@ def post_db():
 @app.route('/db/<name>', methods=["PATCH"])
 def update_db(name):
     query = SampleTable.find_one({"name": name})
-    newvalues = {"$set": {"age": 23}}
-    updated = SampleTable.update_one(query, newvalues)
+    data = request.get_json()
+    # there is defo a better way of doing this:
+    agevalues = {"$set": {"age": data['age']}, "$set": {"name": data['name']}}
+    SampleTable.update_one(query, agevalues)
     return jsonify({'user has been updated'})
 
 
@@ -60,7 +62,6 @@ def update_db(name):
 def delete_db(name):
     query = SampleTable.find_one({"name": name})
     SampleTable.delete_one(query)
-
     return jsonify('user has been deleted')
 
 
