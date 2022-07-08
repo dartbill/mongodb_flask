@@ -35,7 +35,7 @@ def get_db():
 @app.route('/db/<name>', methods=["GET"])
 def get_db_by_name(name):
     query = SampleTable.find_one({"name": name})
-    output = {query}
+    output = query
     return jsonify(output)
 
 
