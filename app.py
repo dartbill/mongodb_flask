@@ -32,6 +32,18 @@ def get_db():
     return jsonify(output)
 
 
+@app.route('/db/:<id>', methods=["GET"])
+def get_db():
+    query = SampleTable.find_one({"name": id})
+    output = {query}
+    # i = 0
+    # for x in query:
+    #     output[i] = x
+    #     output[i].pop('_id')
+    #     i += 1
+    return jsonify(output)
+
+
 @app.route('/db', methods=["POST"])
 def post_db():
     new_user = request.get_json()
@@ -39,7 +51,7 @@ def post_db():
     return jsonify('a new user has been added')
 
 
-@app.route('/db:<id>', methods=["PATCH"])
+@app.route('/db/:<id>', methods=["PATCH"])
 def update_db():
     update_user = SampleTable.find_one({"name": id})
     data = request.get_json()
