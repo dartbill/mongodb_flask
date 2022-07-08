@@ -41,8 +41,9 @@ def post_db():
 
 @app.route('/db:<id>', methods=["PATCH"])
 def update_db():
-    update_user = SampleTable.find_one({})
-    mycollection.update_one({'_id': mongo_id}, {"$set": post}, upsert=False)
+    update_user = SampleTable.find_one({"_id": id})
+    data = request.get_json()
+    SampleTable.update_one(update_user, data)
     return jsonify('a new user has been updated')
 
 
