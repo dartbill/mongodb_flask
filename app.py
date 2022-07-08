@@ -37,13 +37,7 @@ def get_db():
 @app.route('/db/<name>', methods=["GET"])
 def get_db_by_name(name):
     query = SampleTable.find_one({"name": name})
-
     output = {'name': query['name'], 'age': query['age']}
-    # i = 0
-    # for x in query:
-    #     output[i] = x
-    #     # output[i].pop('_id')
-    #     i += 1
     return jsonify(output)
 
 
@@ -54,12 +48,12 @@ def post_db():
     return jsonify('a new user has been added')
 
 
-@ app.route('/db/:<id>', methods=["PATCH"])
-def update_db():
-    update_user = SampleTable.find_one({"name": id})
-    data = request.get_json()
-    SampleTable.update_one(update_user, data)
-    return jsonify('a new user has been updated')
+@app.route('/db/<name>', methods=["PATCH"])
+def update_db(name):
+    query = SampleTable.find_one({"name": name})
+    newvalues = {"$set": {"age": 2}}
+    updated = SampleTable.update_one(query, newvalues)
+    return jsonify(updated)
 
 
 if __name__ == '__main__':
