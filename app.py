@@ -51,9 +51,17 @@ def post_db():
 @app.route('/db/<name>', methods=["PATCH"])
 def update_db(name):
     query = SampleTable.find_one({"name": name})
-    newvalues = {"$set": {"age": 2}}
+    newvalues = {"$set": {"age": 23}}
     updated = SampleTable.update_one(query, newvalues)
-    return jsonify(updated)
+    return jsonify({'user has been updated'})
+
+
+@app.route('/db/<name>', methods=["DELETE"])
+def delete_db(name):
+    query = SampleTable.find_one({"name": name})
+    SampleTable.delete_one(query)
+
+    return jsonify('user has been deleted')
 
 
 if __name__ == '__main__':
