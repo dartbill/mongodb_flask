@@ -32,9 +32,9 @@ def get_db():
     return jsonify(output)
 
 
-@app.route('/db/<id>', methods=["GET"])
-def get_db():
-    query = SampleTable.find_one({"name": id})
+@app.route('/db/:name', methods=["GET"])
+def get_db(name):
+    query = SampleTable.find_one({"name": name})
     output = {query}
     # i = 0
     # for x in query:
